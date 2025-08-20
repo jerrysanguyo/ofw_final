@@ -263,6 +263,14 @@
                                         Type of residence
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.typeId.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.typeId.index') }}">
+                                        <i class="fa-solid fa-id-badge"></i>
+                                        Type of ID
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
