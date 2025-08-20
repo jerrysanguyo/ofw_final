@@ -5,6 +5,7 @@ use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
+use App\Http\Controllers\Cms\RelationController;
 use App\Http\Controllers\Cms\ReligionController;
 use App\Http\Controllers\Cms\TypeIdController;
 use App\Http\Controllers\Cms\TypeResidenceController;
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('barangay', BarangayController::class)->middleware('merge_cms:barangays,barangay');
         Route::resource('residence', TypeResidenceController::class)->middleware('merge_cms:type_residences,residence');
         Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
+        Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
     });
 
     Route::middleware('role:admin')
@@ -45,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('educational', EducationalAttainmentController::class)->middleware('merge_cms:educational_attainments,educational');
         Route::resource('barangay', BarangayController::class)->middleware('merge_cms:barangays,barangay');
         Route::resource('residence', TypeResidenceController::class)->middleware('merge_cms:type_residences,residence');
+        Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
+        Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
     });
 
     Route::middleware('role:user')
