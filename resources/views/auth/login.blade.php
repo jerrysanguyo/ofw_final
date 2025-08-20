@@ -1,7 +1,9 @@
 @extends('layouts.auth')
 
 @section('content')
+@include('components.alert')
 <div id="app">
+    @include('components.loading')
     <section class="section">
         <div class="container mt-5">
             <div class="row">
@@ -21,7 +23,7 @@
                             <p class="text-muted text-center">Enter your email and password to access the admin panel.
                             </p>
 
-                            <form method="POST" action="{{ route('authenticate') }}" class="needs-validation" novalidate>
+                            <form id="status-form" method="POST" action="{{ route('authenticate') }}" class="needs-validation" novalidate>
                                 @csrf
                                 
                                 <div class="form-group">
