@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\GenderController;
+use App\Http\Controllers\Cms\ReligionController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
+        Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
     });
 
     Route::middleware('role:admin')
@@ -28,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
+        Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
     });
 
     Route::middleware('role:user')

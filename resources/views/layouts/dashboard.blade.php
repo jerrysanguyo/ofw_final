@@ -183,25 +183,21 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li
-                            class="dropdown">
-                            <a href="#"
-                                class="nav-link">
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">
                                 <i class="fas fa-home"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         @role('superadmin|admin')
-                        <li
-                            class="dropdown">
-                            <a href="#"
-                                class="nav-link">
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">
                                 <i class="fas fa-folder-open"></i>
                                 <span>List of Applicants</span>
                             </a>
                         </li>
                         @endrole
-                        
+
                         @role('superadmin|admin')
                         <li class="menu-header">CMS</li>@php
                         $role = Auth::user()->getRoleNames()->first();
@@ -223,8 +219,16 @@
                                     class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.gender.index') ? 'active' : '' }}">
                                     <a class="nav-link"
                                         href="{{ route(Auth::user()->getRoleNames()->first() . '.gender.index') }}">
-                                        <i class="fas fa-droplet"></i>
+                                        <i class="fa-solid fa-person-half-dress"></i>
                                         Gender
+                                    </a>
+                                </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.religion.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.religion.index') }}">
+                                        <i class="fa-solid fa-hands-praying"></i>
+                                        Religion
                                     </a>
                                 </li>
                             </ul>
