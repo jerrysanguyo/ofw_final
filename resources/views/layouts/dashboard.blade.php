@@ -239,6 +239,14 @@
                                         Civil Status
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.educational.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.educational.index') }}">
+                                        <i class="fa-solid fa-book"></i>
+                                        Educational Attainemnt
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
