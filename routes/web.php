@@ -5,6 +5,7 @@ use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
+use App\Http\Controllers\Cms\OwwaController;
 use App\Http\Controllers\Cms\RelationController;
 use App\Http\Controllers\Cms\ReligionController;
 use App\Http\Controllers\Cms\TypeIdController;
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('residence', TypeResidenceController::class)->middleware('merge_cms:type_residences,residence');
         Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
         Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
+        Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
     });
 
     Route::middleware('role:admin')
@@ -49,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('residence', TypeResidenceController::class)->middleware('merge_cms:type_residences,residence');
         Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
         Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
+        Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
     });
 
     Route::middleware('role:user')

@@ -272,11 +272,19 @@
                                     </a>
                                 </li>
                                 <li
-                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.relation.index') ? 'active' : '' }}">
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.owwa.index') ? 'active' : '' }}">
                                     <a class="nav-link"
                                         href="{{ route(Auth::user()->getRoleNames()->first() . '.relation.index') }}">
                                         <i class="fa-solid fa-person-breastfeeding"></i>
                                         Relations
+                                    </a>
+                                </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.owwa.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.owwa.index') }}">
+                                        <i class="fa-solid fa-plane"></i>
+                                        Owwa
                                     </a>
                                 </li>
                             </ul>
