@@ -24,31 +24,6 @@
                         <input type="text" id="remarks" name="remarks" class="form-control" placeholder="Enter remarks"
                             required>
                     </div>
-
-                    @php
-                    $foreignKeyMap = [
-                    'barangay' => 'district_id',
-                    'goal' => 'domain_id',
-                    'competency' => 'domain_id',
-                    'objective' => 'goal_id',
-                    ];
-                    $field = $foreignKeyMap[$resource] ?? null;
-                    @endphp
-
-                    @if($field)
-                    <div class="form-group">
-                        <label for="{{ $field }}">
-                            {{ Str::title(str_replace('_',' ',$field)) }}
-                        </label>
-                        <select id="{{ $field }}" name="{{ $field }}" class="form-control">
-                            @foreach($subRecords as $item)
-                            <option value="{{ $item->id }}" {{ old($field) == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endif
                 </div>
 
                 <div class="modal-footer">

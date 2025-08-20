@@ -247,6 +247,14 @@
                                         Educational Attainemnt
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.barangay.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.barangay.index') }}">
+                                        <i class="fa-solid fa-house"></i>
+                                        Barangay
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole

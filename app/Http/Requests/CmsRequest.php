@@ -35,9 +35,6 @@ class CmsRequest extends FormRequest
     protected function getAdditionalRulesForTable(?string $table): array
     {
         return match ($table) {
-            'barangays' => [
-                'district_id' => ['required', 'numeric', 'exists:districts,id'],
-            ],
             'goals' => [
                 'domain_id' => ['required', 'numeric', 'exists:learning_domains,id'],
             ],

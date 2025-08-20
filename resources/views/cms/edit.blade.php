@@ -24,32 +24,6 @@
                         <input type="text" id="remarks-{{ $record->id ?? '' }}" name="remarks" class="form-control"
                             value="{{ old('remarks', $record->remarks ?? '') }}" required>
                     </div>
-
-                    @php
-                    $foreignKeyMap = [
-                    'barangay' => 'district_id',
-                    'goal' => 'domain_id',
-                    'competency' => 'domain_id',
-                    'objective' => 'goal_id',
-                    ];
-                    $field = $foreignKeyMap[$resource] ?? null;
-                    @endphp
-
-                    @if($field)
-                    <div class="form-group">
-                        <label for="{{ $field }}-{{ $record->id ?? '' }}">
-                            {{ Str::title(str_replace('_',' ',$field)) }}
-                        </label>
-                        <select id="{{ $field }}-{{ $record->id ?? '' }}" name="{{ $field }}" class="form-control" required>
-                            @foreach($subRecords as $item)
-                            <option value="{{ $item->id }}"
-                                {{ old($field, $record->$field) == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>

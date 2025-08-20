@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civil_statuses,civil');
         Route::resource('educational', EducationalAttainmentController::class)->middleware('merge_cms:educational_attainments,educational');
+        Route::resource('barangay', BarangayController::class)->middleware('merge_cms:barangays,barangay');
     });
 
     Route::middleware('role:admin')
@@ -37,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civils,civil');
         Route::resource('educational', EducationalAttainmentController::class)->middleware('merge_cms:educational_attainments,educational');
+        Route::resource('barangay', BarangayController::class)->middleware('merge_cms:barangays,barangay');
     });
 
     Route::middleware('role:user')

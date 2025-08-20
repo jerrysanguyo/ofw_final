@@ -60,27 +60,10 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $record)
-                            @php
-                            $fieldMap = [
-                            'role' => 'guard_name',
-                            'permission' => 'guard_name',
-                            'barangay' => 'district.name',
-                            'goal' => 'domain.name',
-                            'competency' => 'domain.name',
-                            'objective' => 'goal.name',
-                            ];
-                            $firstCol = isset($fieldMap[$resource]) ? data_get($record, $fieldMap[$resource]) :
-                            $record->remarks;
-                            $secondCol = in_array($resource, ['barangay','goal','competency','objective']) ?
-                            $record->remarks : null;
-                            @endphp
                             <tr>
                                 <td class="border border-black">{{ $record->id }}</td>
                                 <td class="border border-black">{{ $record->name }}</td>
-                                <td class="border border-black">{{ $firstCol }}</td>
-                                @if($secondCol)
-                                <td class="border border-black">{{ $secondCol }}</td>
-                                @endif
+                                <td class="border border-black">{{ $record->remarks }}</td>
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
