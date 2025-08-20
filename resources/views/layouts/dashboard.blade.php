@@ -255,6 +255,14 @@
                                         Barangay
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.residence.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.residence.index') }}">
+                                        <i class="fa-solid fa-people-line"></i>
+                                        Type of residence
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
