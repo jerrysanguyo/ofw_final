@@ -203,19 +203,28 @@
                         @endrole
                         
                         @role('superadmin|admin')
-                        <li class="menu-header">CMS</li>
-                        <li class="dropdown">
+                        <li class="menu-header">CMS</li>@php
+                        $role = Auth::user()->getRoleNames()->first();
+                        $children = [
+                        'gebder.index',
+                        ];
+                        $open = collect($children)
+                        ->map(fn($r) => "$role.$r")
+                        ->contains(fn($route) => request()->routeIs($route));
+                        @endphp
+
+                        <li class="dropdown {{ $open ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown">
                                 <i class="fas fa-th"></i>
                                 <span>Dropdown options</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li
-                                    class="dropdown">
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.gender.index') ? 'active' : '' }}">
                                     <a class="nav-link"
-                                        href="#">
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.gender.index') }}">
                                         <i class="fas fa-droplet"></i>
-                                        Blood type
+                                        Gender
                                     </a>
                                 </li>
                             </ul>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Cms\GenderController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('superadmin.')
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
     });
 
     Route::middleware('role:admin')
@@ -25,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.')
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
     });
 
     Route::middleware('role:user')
