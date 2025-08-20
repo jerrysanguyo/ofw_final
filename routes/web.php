@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\GenderController;
 use App\Http\Controllers\Cms\ReligionController;
 use App\Http\Controllers\DashboardController;
@@ -22,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
+        Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civil_statuses,civil');
     });
 
     Route::middleware('role:admin')
@@ -31,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
+        Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civils,civil');
     });
 
     Route::middleware('role:user')

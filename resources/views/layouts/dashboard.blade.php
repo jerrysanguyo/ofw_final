@@ -231,6 +231,14 @@
                                         Religion
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.civil.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.civil.index') }}">
+                                        <i class="fa-solid fa-heart"></i>
+                                        Civil Status
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
