@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CivilStatus;
+use App\Models\Continent;
 use App\Models\Contract;
+use App\Models\Country;
 use App\Models\EducationalAttainment;
 use App\Models\Gender;
 use App\Models\Job;
@@ -11,6 +13,7 @@ use App\Models\Need;
 use App\Models\Owwa;
 use App\Models\Relation;
 use App\Models\Religion;
+use App\Models\SubJob;
 use App\Models\TypeId;
 use App\Models\TypeResidence;
 use Illuminate\Http\Request;
@@ -30,6 +33,7 @@ class FormController extends Controller
         $owwas = Owwa::getAllOwwas();
         $relations = Relation::getAllRelations();
         $needs = Need::getAllNeeds();
+        $continents = Continent::getAllContinents();
         return view('form.index', compact(
             'residence_types',
             'genders',
@@ -42,6 +46,28 @@ class FormController extends Controller
             'owwas',
             'relations',
             'needs',
+            'continents',
         ));
+    }
+
+    
+    public function getByJob($jobId)
+    {
+        $subJobs = SubJob::where('job_id', $jobId)->get(['id', 'name']);
+        
+        return response()->json($subJobs);
+    }
+    
+    public function getByContinent($continentId)
+    {
+        if (!ctype_digit((string) $continentId)) {
+            return response()->json([], 400);
+        }
+
+        $countries = Country::where('continent_id', $continentId)
+            ->orderBy('name')
+            ->get(['id', 'name']);
+
+        return response()->json($countries);
     }
 }

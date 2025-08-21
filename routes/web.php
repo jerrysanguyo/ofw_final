@@ -28,6 +28,8 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/application-form', [FormController::class, 'index'])->name('form.index');
+Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
+Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware('role:superadmin')
