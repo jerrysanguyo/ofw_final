@@ -311,6 +311,22 @@
                                         Country
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.job.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.job.index') }}">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                        Job
+                                    </a>
+                                </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.subJob.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.subJob.index') }}">
+                                        <i class="fa-solid fa-suitcase"></i>
+                                        Sub Job
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
