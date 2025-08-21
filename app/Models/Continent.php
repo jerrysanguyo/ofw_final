@@ -18,4 +18,9 @@ class Continent extends Model
     {
         return self::all();
     }
+
+    public function country()
+    {
+        return $this->hasMany(Country::class, 'continent_id');
+    }
 }

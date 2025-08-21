@@ -327,6 +327,14 @@
                                         Sub Job
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.need.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.need.index') }}">
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Needs
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole

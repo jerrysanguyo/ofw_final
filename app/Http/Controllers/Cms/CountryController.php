@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cms;
 
+use App\Models\Continent;
 use App\Models\Country;
 use App\Http\Requests\CmsRequest;
 use App\DataTables\CmsDataTable;
@@ -24,8 +25,9 @@ class CountryController extends Controller
     {
         $page_title = 'Countries';
         $resource = $this->resource;
-        $columns = ['id', 'name', 'remarks', 'actions'];
-        $data = Country::getAllCountrys();
+        $columns = ['id', 'name', 'continent', 'remarks', 'actions'];
+        $data = Country::getAllCountries();
+        $subRecords = Continent::getAllContinents();
 
         return $dataTable
             ->render('cms.index', compact(
@@ -34,6 +36,7 @@ class CountryController extends Controller
                 'columns',
                 'data',
                 'dataTable',
+                'subRecords',
             ));
     }
     

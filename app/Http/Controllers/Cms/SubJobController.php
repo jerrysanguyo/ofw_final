@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cms;
 
+use App\Models\Job;
 use App\Models\SubJob;
 use App\Http\Requests\CmsRequest;
 use App\DataTables\CmsDataTable;
@@ -12,8 +13,8 @@ use App\Http\Controllers\Controller;
 class SubJobController extends Controller
 {
     protected CmsService $cmsService;
-    protected string $resource = 'SubJob';
-    protected string $table = 'SubJobs';
+    protected string $resource = 'subJob';
+    protected string $table = 'subJobs';
 
     public function __construct()
     {
@@ -24,8 +25,9 @@ class SubJobController extends Controller
     {
         $page_title = 'SubJobs';
         $resource = $this->resource;
-        $columns = ['id', 'name', 'remarks', 'actions'];
+        $columns = ['id', 'name', 'job', 'remarks', 'actions'];
         $data = SubJob::getAllSubJobs();
+        $subRecords = Job::getAllJobs();
 
         return $dataTable
             ->render('cms.index', compact(
@@ -34,6 +36,7 @@ class SubJobController extends Controller
                 'columns',
                 'data',
                 'dataTable',
+                'subRecords',
             ));
     }
     

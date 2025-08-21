@@ -35,8 +35,11 @@ class CmsRequest extends FormRequest
     protected function getAdditionalRulesForTable(?string $table): array
     {
         return match ($table) {
-            'country' => [
+            'countries' => [
                 'continent_id' => ['required', 'numeric', 'exists:continents,id'],
+            ],
+            'sub_jobs' => [
+                'job_id' => ['required', 'numeric', 'exists:jobs,id'],
             ],
             default => [],
         };

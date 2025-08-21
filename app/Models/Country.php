@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
-    protected $table = 'Countrys';
+    protected $table = 'countries';
     protected $fillable = [
         'continent_id',
         'name',
@@ -18,5 +18,10 @@ class Country extends Model
     public static function getAllCountries()
     {
         return self::all();
+    }
+
+    public function continent()
+    {
+        return $this->belongsTo(Continent::class, 'continent_id');
     }
 }

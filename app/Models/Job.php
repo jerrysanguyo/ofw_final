@@ -18,4 +18,9 @@ class Job extends Model
     {
         return self::all();
     }
+
+    public function subJob()
+    {
+        return $this->hasMany(SubJob::class, 'job_id');
+    }
 }

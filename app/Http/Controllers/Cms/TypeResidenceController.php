@@ -22,7 +22,7 @@ class TypeResidenceController extends Controller
 
     public function index(CmsDataTable $dataTable)
     {
-        $page_title = 'Type of Residence';
+        $page_title = 'Residence';
         $resource = $this->resource;
         $columns = ['id', 'name', 'remarks', 'actions'];
         $data = TypeResidence::getAllTypeResidences();

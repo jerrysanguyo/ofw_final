@@ -9,6 +9,7 @@ use App\Http\Controllers\Cms\CountryController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
 use App\Http\Controllers\Cms\JobController;
+use App\Http\Controllers\Cms\NeedController;
 use App\Http\Controllers\Cms\OwwaController;
 use App\Http\Controllers\Cms\RelationController;
 use App\Http\Controllers\Cms\ReligionController;
@@ -45,7 +46,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('continent', ContinentController::class)->middleware('merge_cms:continents,continent');
         Route::resource('country', CountryController::class)->middleware('merge_cms:countries,country');
         Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
-        Route::resource('subJob', SubJobController::class)->middleware('merge_cms:subJobs,subJob');
+        Route::resource('subJob', SubJobController::class)->middleware('merge_cms:sub_jobs,subJob');
+        Route::resource('need', NeedController::class)->middleware('merge_cms:needs,need');
     });
 
     Route::middleware('role:admin')
@@ -65,7 +67,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('contract', ContractController::class)->middleware('merge_cms:contracts,contract');
         Route::resource('country', CountryController::class)->middleware('merge_cms:countries,country');
         Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
-        Route::resource('subJob', SubJobController::class)->middleware('merge_cms:subJobs,subJob');
+        Route::resource('subJob', SubJobController::class)->middleware('merge_cms:sub_jobs,subJob');
+        Route::resource('need', NeedController::class)->middleware('merge_cms:needs,need');
     });
 
     Route::middleware('role:user')

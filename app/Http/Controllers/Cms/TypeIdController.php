@@ -22,7 +22,7 @@ class TypeIdController extends Controller
 
     public function index(CmsDataTable $dataTable)
     {
-        $page_title = 'Type of Ids';
+        $page_title = 'ID';
         $resource = $this->resource;
         $columns = ['id', 'name', 'remarks', 'actions'];
         $data = TypeId::getAllTypeIds();
