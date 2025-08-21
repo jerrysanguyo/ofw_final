@@ -17,6 +17,7 @@ use App\Http\Controllers\Cms\SubJobController;
 use App\Http\Controllers\Cms\TypeIdController;
 use App\Http\Controllers\Cms\TypeResidenceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -26,6 +27,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login/authentication', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/application-form', [FormController::class, 'index'])->name('form.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware('role:superadmin')
