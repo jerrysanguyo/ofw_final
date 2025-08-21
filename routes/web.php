@@ -5,8 +5,10 @@ use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\ContinentController;
 use App\Http\Controllers\Cms\ContractController;
+use App\Http\Controllers\Cms\CountryController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
+use App\Http\Controllers\Cms\JobController;
 use App\Http\Controllers\Cms\OwwaController;
 use App\Http\Controllers\Cms\RelationController;
 use App\Http\Controllers\Cms\ReligionController;
@@ -40,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
         Route::resource('contract', ContractController::class)->middleware('merge_cms:contracts,contract');
         Route::resource('continent', ContinentController::class)->middleware('merge_cms:continents,continent');
+        Route::resource('country', CountryController::class)->middleware('merge_cms:countries,country');
+        Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
     });
 
     Route::middleware('role:admin')
@@ -57,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
         Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
         Route::resource('contract', ContractController::class)->middleware('merge_cms:contracts,contract');
+        Route::resource('country', CountryController::class)->middleware('merge_cms:countries,country');
+        Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
     });
 
     Route::middleware('role:user')
