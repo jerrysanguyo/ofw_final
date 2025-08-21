@@ -202,7 +202,10 @@
                         <li class="menu-header">CMS</li>@php
                         $role = Auth::user()->getRoleNames()->first();
                         $children = [
-                        'gebder.index',
+                        'gender.index', 'religion.index', 'civil.index', 'educational.index', 'barangay.index',
+                        'residence.index', 'typeId.index', 'relation.index', 'owwa.index', 'contract.index',
+                        'continent.index',
+                        'country.index', 'job.index', 'subJob.index', 'need.index'
                         ];
                         $open = collect($children)
                         ->map(fn($r) => "$role.$r")
