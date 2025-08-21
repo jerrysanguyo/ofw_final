@@ -295,6 +295,14 @@
                                         Contract
                                     </a>
                                 </li>
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.continent.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.continent.index') }}">
+                                        <i class="fa-solid fa-map"></i>
+                                        Continent
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole
