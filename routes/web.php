@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
+use App\Http\Controllers\Cms\ContractController;
 use App\Http\Controllers\Cms\EducationalAttainmentController;
 use App\Http\Controllers\Cms\GenderController;
 use App\Http\Controllers\Cms\OwwaController;
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
         Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
         Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
+        Route::resource('contact', ContractController::class)->middleware('merge_cms:contacts,contact');
     });
 
     Route::middleware('role:admin')
@@ -52,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('typeId', TypeIdController::class)->middleware('merge_cms:type_ids,typeId');
         Route::resource('relation', RelationController::class)->middleware('merge_cms:relations,relation');
         Route::resource('owwa', OwwaController::class)->middleware('merge_cms:owwas,owwa');
+        Route::resource('contact', ContractController::class)->middleware('merge_cms:contacts,contact');
     });
 
     Route::middleware('role:user')
