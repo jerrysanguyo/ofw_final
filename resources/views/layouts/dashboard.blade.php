@@ -175,11 +175,10 @@
             <div class="main-sidebar sidebar-style-2" tabindex="1" style="overflow: hidden; outline: none;">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">Taguig Yakap
-                            Center</a>
+                        <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">Taguig OFW OFFICE</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">YAKAP</a>
+                        <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">OFW</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>

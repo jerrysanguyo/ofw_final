@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('superadmin.')
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/dashboard/applicant-count', [DashboardController::class, 'applicantCount'])->name('dashboard.applicant.count');
+        Route::post('/dashboard/continent-breakdown', [DashboardController::class, 'continentBreakdown'])->name('dashboard.continent.breakdown');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civil_statuses,civil');
@@ -60,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.')
         ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/dashboard/applicant-count', [DashboardController::class, 'applicantCount'])->name('dashboard.applicant.count');
+        Route::post('/dashboard/continent-breakdown', [DashboardController::class, 'continentBreakdown'])->name('dashboard.continent.breakdown');
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civils,civil');

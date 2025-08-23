@@ -31,6 +31,11 @@ class UserPersonal extends Model
         'present_job',
     ];
 
+    public static function getAllUserPersonals()
+    {
+        return self::all();
+    }
+
     public static function getUserPersonal($uuid)
     {
         return self::where('uuid', $uuid)->first();
