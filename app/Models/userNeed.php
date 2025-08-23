@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userNeed extends Model
+class UserNeed extends Model
 {
     use HasFactory;
     protected $table = 'user_needs';
@@ -21,7 +21,7 @@ class userNeed extends Model
 
     public function user()
     {
-        return $this->belongsTo(userPersonal::class, 'user_id');
+        return $this->belongsTo(UserPersonal::class, 'user_id');
     }
 
     public function need()

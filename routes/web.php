@@ -25,11 +25,12 @@ Route::redirect('/', '/login');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login.index');
     Route::post('/login/authentication', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::get('/application-form/{uuid}', [FormController::class, 'index'])->name('form.index');
+    Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
+    Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
+    Route::post('/application-form/{uuid}', [FormController::class, 'AppFormStore'])->name('form.store');
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/application-form', [FormController::class, 'index'])->name('form.index');
-Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
-Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware('role:superadmin')

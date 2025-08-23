@@ -28,4 +28,9 @@ class UserFamily extends Model
     {
         return $this->belongsTo(Relation::class, 'relation_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(UserPersonal::class, 'user_id');
+    }
 }

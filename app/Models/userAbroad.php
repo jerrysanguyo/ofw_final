@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userAbroad extends Model
+class UserAbroad extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -30,7 +30,7 @@ class userAbroad extends Model
 
     public function user()
     {
-       return $this->belongsTo(userPersonal::class, 'user_id'); 
+       return $this->belongsTo(UserPersonal::class, 'user_id'); 
     }
 
     public function job()

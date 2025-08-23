@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('abroad_years');
             $table->date('date_departure')->nullable();
             $table->date('date_arrival')->nullable();
-            $table->foreign('owwa_id')->references('id')->on('owwas')->nullOnDelete();
+            $table->foreignId('owwa_id')->constrained('owwas')->cascadeOnDelete();
             $table->enum('intent_return', ['yes', 'no']);
             $table->timestamps();
         });

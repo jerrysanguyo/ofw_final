@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     jobTypeSel.addEventListener('change', function() {
-        if (this.value === 'seabase') {
+        if (this.value === 'seabased') {
             selectSeaEverywhere();
-        } else if (this.value === 'landbase') {
+        } else if (this.value === 'landbased') {
             removeSeaFromJobs();
         } else {
             rebuildJobOptions();
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const initialJobId = jobSel.value || null;
         const initialSubJob = "{{ isset($previousJob) ? ($previousJob->sub_job_id ?? '') : '' }}";
 
-        if (initialJobType === 'seabase') {
+        if (initialJobType === 'seabased') {
             selectSeaEverywhere();
             if (initialSubJob) {
                 setTimeout(() => populateSubJobs(jobSel.value, initialSubJob), 0);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (initialJobType === 'landbase') {
+        if (initialJobType === 'landbased') {
             removeSeaFromJobs();
         } else {
             rebuildJobOptions();

@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('user_personals', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
             $table->string('house_number');
             $table->string('street')->nullable();
             $table->foreignId('barangay_id')->constrained('barangays')->cascadeOnDelete();
@@ -23,7 +26,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('place_of_birth');
             $table->foreignId('gender_id')->constrained('genders')->cascadeOnDelete();
-            $table->foreignId('type_id_id')->constrained('type_ids')->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained('type_ids')->cascadeOnDelete();
             $table->enum('voters', ['yes', 'no']);
             $table->foreignId('educational_attainment_id')->constrained('educational_attainments')->cascadeOnDelete();
             $table->foreignId('religion_id')->constrained('religions')->cascadeOnDelete();

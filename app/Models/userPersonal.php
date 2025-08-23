@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userPersonal extends Model
+class UserPersonal extends Model
 {
     use HasFactory;
     protected $table = 'user_personals';
     protected $fillable = [
         'uuid',
+        'first_name',
+        'middle_name',
+        'last_name',
         'house_number',
         'street',
         'barangay_id',
@@ -20,7 +23,7 @@ class userPersonal extends Model
         'date_of_birth',
         'place_of_birth',
         'gender_id',
-        'type_id_id',
+        'type_id',
         'voters',
         'educational_attainment_id',
         'religion_id',
@@ -70,16 +73,16 @@ class userPersonal extends Model
 
     public function abroad()
     {
-        return $this->hasMany(userAbroad::class, 'user_id');
+        return $this->hasOne(UserAbroad::class, 'user_id');
     }
 
-    public function family()
+    public function families()
     {
-        return $this->hasMany(userFamily::class, 'user_id');
+        return $this->hasMany(UserFamily::class, 'user_id');
     }
 
     public function needs()
     {
-        return $this->hasMany(userNeed::class, 'user_id');
+        return $this->hasMany(UserNeed::class, 'user_id');
     }
 }

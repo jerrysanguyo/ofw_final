@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppFormRequest;
+use App\Models\Barangay;
 use App\Models\CivilStatus;
 use App\Models\Continent;
 use App\Models\Contract;
@@ -16,12 +18,46 @@ use App\Models\Religion;
 use App\Models\SubJob;
 use App\Models\TypeId;
 use App\Models\TypeResidence;
-use Illuminate\Http\Request;
+use App\Models\UserPersonal;
+use App\Services\FormService;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\ConnectionException;
 
 class FormController extends Controller
 {
-    public function index()
+    protected $formService;
+
+    public function __construct(FormService $formService)
     {
+        $this->formService = $formService;
+    }
+
+    private function userApi(?string $uuid): array
+    {
+        if (empty($uuid)) return [];
+
+        $SECRET_TOKEN = "super-secret-token-123";
+        $ENDPOINT = "http://127.0.0.2:8000/api/users/{$uuid}";
+
+        try {
+            $resp = Http::withHeaders(['X-Api-Token' => $SECRET_TOKEN])
+                ->timeout(10)->get($ENDPOINT);
+        } catch (ConnectionException $e) {
+            return [];
+        }
+
+        if ($resp->failed()) return [];
+        if (($resp->json('echo_token') ?? null) !== $SECRET_TOKEN) return [];
+
+        return $resp->json('data') ?? [];
+    }
+
+    public function index(string $uuid)
+    {
+        if (empty($uuid)) {
+            abort(404, 'UUID is required');
+        }
+        $barangays = Barangay::getAllBarangays();
         $residence_types = TypeResidence::getAllTypeResidences();
         $genders = Gender::getAllGenders();
         $ids = TypeId::getAllTypeIds();
@@ -34,7 +70,14 @@ class FormController extends Controller
         $relations = Relation::getAllRelations();
         $needs = Need::getAllNeeds();
         $continents = Continent::getAllContinents();
+        $userDetails = $this->userApi($uuid);
+
+        $userInfo     = UserPersonal::where('uuid', $uuid)->first();
+        $previousJob  = $userInfo?->abroad;
+        $households   = $userInfo?->families ?? collect();
+        $userNeeds    = $userInfo?->needs()->pluck('need_id')->toArray() ?? [];
         return view('form.index', compact(
+            'barangays',
             'residence_types',
             'genders',
             'ids',
@@ -47,10 +90,14 @@ class FormController extends Controller
             'relations',
             'needs',
             'continents',
+            'userDetails',
+            'userInfo',
+            'previousJob',
+            'households',
+            'userNeeds',
         ));
     }
 
-    
     public function getByJob($jobId)
     {
         $subJobs = SubJob::where('job_id', $jobId)->get(['id', 'name']);
@@ -69,5 +116,18 @@ class FormController extends Controller
             ->get(['id', 'name']);
 
         return response()->json($countries);
+    }
+
+    public function AppFormStore(AppFormRequest $request, $uuid)
+    {
+        $form = $this->formService->formStore($uuid, $request->validated());
+
+        activity()
+            ->performedOn($form)
+            ->log('Submitted application form for UUID: ' . $uuid);
+
+        return redirect()
+            ->route('form.index', $uuid)
+            ->with('success', 'Application form submitted successfully!');
     }
 }

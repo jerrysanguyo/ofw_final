@@ -41,13 +41,14 @@
         <div class="section-body">
             <div class="card shadow-lg card-primary">
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{ route('form.store', $userDetails['uuid']) }}" method="post">
+                        @csrf
                         @include('form.partial.personal')
                         @include('form.partial.abroad')
                         @include('form.partial.family')
                         @include('form.partial.need')
                         <div class="text-right">
-                            <input type="button" value="Submit" class="btn btn-primary">
+                            <input type="submit" value="Submit" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
