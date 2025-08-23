@@ -72,4 +72,14 @@ class userPersonal extends Model
     {
         return $this->hasMany(userAbroad::class, 'user_id');
     }
+
+    public function family()
+    {
+        return $this->hasMany(userFamily::class, 'user_id');
+    }
+
+    public function needs()
+    {
+        return $this->hasMany(userNeed::class, 'user_id');
+    }
 }

@@ -18,4 +18,9 @@ class Need extends Model
     {
         return self::all();
     }
+
+    public function userNeed()
+    {
+        return $this->hasMany(userNeed::class, 'need_id');
+    }
 }
