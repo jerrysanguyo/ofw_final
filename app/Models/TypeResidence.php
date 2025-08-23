@@ -18,4 +18,9 @@ class TypeResidence extends Model
     {
         return self::all();
     }
+
+    public function userPersonals()
+    {
+        return $this->hasMany(userPersonal::class, 'residence_type_id');
+    }
 }

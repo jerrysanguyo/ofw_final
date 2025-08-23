@@ -18,4 +18,9 @@ class Religion extends Model
     {
         return self::all();
     }
+    
+    public function userPersonals()
+    {
+        return $this->hasMany(userPersonal::class, 'religion_id');
+    }
 }

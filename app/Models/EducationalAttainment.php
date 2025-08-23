@@ -18,4 +18,9 @@ class EducationalAttainment extends Model
     {
         return self::all();
     }
+
+    public function userPersonals()
+    {
+        return $this->hasMany(userPersonal::class, 'educational_attainment_id');
+    }
 }

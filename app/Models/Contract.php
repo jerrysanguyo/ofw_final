@@ -18,4 +18,9 @@ class Contract extends Model
     {
         return self::all();
     }
+
+    public function userAbroad()
+    {
+        return $this->hasMany(userAbroad::class, 'contract_id');
+    }
 }

@@ -10,7 +10,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-1">
-            <label for="house_number">House number</label>
+            <label for="house_number">House no.</label>
             <input type="text" id="house_number" name="house_number" class="form-control" value="">
         </div>
         <div class="form-group col-md-2">

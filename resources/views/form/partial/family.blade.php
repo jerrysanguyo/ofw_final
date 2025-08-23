@@ -35,7 +35,7 @@
                 <input type="text" name="household[work][]" class="form-control">
             </div>
             <div class="form-group col-lg-1">
-                <label>Monthly income</label>
+                <label>Income</label>
                 <input type="number" name="household[monthly_income][]" class="form-control" value="0">
             </div>
             <div class="form-group col-lg-1">

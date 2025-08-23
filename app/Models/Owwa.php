@@ -18,4 +18,9 @@ class Owwa extends Model
     {
         return self::all();
     }
+
+    public function userAbroad()
+    {
+        return $this->hasMany(userAbroad::class, 'owwa_id');
+    }
 }

@@ -18,4 +18,9 @@ class CivilStatus extends Model
     {
         return self::all();
     }
+
+    public function userPersonals()
+    {
+        return $this->hasMany(userPersonal::class, 'civil_status_id');
+    }
 }

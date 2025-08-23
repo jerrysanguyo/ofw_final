@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('user_families', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('user_personals')->cascadeOnDelete();
+            $table->string('full_name');
+            $table->foreignId('relation_id')->constrained('relations')->cascadeOnDelete();
+            $table->date('date_of_birth');
+            $table->string('work')->nullable();
+            $table->integer('income')->nullable();
+            $table->enum('voters', ['yes', 'no']);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('user_families');
+    }
+};

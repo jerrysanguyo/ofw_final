@@ -24,4 +24,9 @@ class SubJob extends Model
     {
         return $this->belongsTo(Job::class, 'job_id');
     }
+
+    public function userAbroad()
+    {
+        return $this->hasMany(userAbroad::class, 'sub_job_id');
+    }
 }

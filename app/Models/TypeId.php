@@ -18,4 +18,9 @@ class TypeId extends Model
     {
         return self::all();
     }
+
+    public function userPersonals()
+    {
+        return $this->hasMany(userPersonal::class, 'type_id_id');
+    }
 }

@@ -18,4 +18,9 @@ class Relation extends Model
     {
         return self::all();
     }
+
+    public function userFamily()
+    {
+        return $this->hasMany(UserFamily::class, 'relation_id');
+    }
 }
