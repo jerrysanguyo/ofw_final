@@ -23,4 +23,10 @@ class Barangay extends Model
     {
         return $this->hasMany(userPersonal::class, 'barangay_id');
     }
+
+    public function archivePersonals()
+    {
+        return $this->hasMany(ArchivePersonal::class, 'barangay_id');
+    }
+
 }

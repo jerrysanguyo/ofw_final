@@ -23,4 +23,9 @@ class CivilStatus extends Model
     {
         return $this->hasMany(userPersonal::class, 'civil_status_id');
     }
+
+    public function archivePersonals()
+    {
+        return $this->hasMany(ArchivePersonal::class, 'civil_status_id');
+    }
 }

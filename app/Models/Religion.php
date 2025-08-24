@@ -23,4 +23,9 @@ class Religion extends Model
     {
         return $this->hasMany(userPersonal::class, 'religion_id');
     }
+    
+    public function archivePersonals()
+    {
+        return $this->hasMany(ArchivePersonal::class, 'religion_id');
+    }
 }

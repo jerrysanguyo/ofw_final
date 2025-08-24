@@ -23,4 +23,9 @@ class EducationalAttainment extends Model
     {
         return $this->hasMany(userPersonal::class, 'educational_attainment_id');
     }
+
+    public function archivePersonals()
+    {
+        return $this->hasMany(ArchivePersonal::class, 'educational_attainment_id');
+    }
 }
