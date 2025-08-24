@@ -3,7 +3,7 @@
         <div class="card lift-card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Recent Applicants</h4>
-                <a href="#" class="btn btn-primary btn-sm">
+                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.applicant.index') }}" class="btn btn-primary btn-sm">
                     View more records
                 </a>
             </div>

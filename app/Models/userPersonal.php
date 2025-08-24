@@ -43,7 +43,7 @@ class UserPersonal extends Model
 
     public function barangay()
     {
-        return $this->belongsTo(Barangay::class, 'baragay_id');
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 
     public function residenceType()

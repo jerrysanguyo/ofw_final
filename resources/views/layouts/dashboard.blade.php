@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Taguig Yakap Center</title>
+    <title>Taguig OFW Office</title>
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/4f2d7302b1.js" crossorigin="anonymous"></script>
 
@@ -76,7 +76,7 @@
         visibility: hidden;
         background: rgb(0, 0, 0) transparent;
         background-color: rgba(0, 0, 0, 0.6);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
         color: white;
         font: 10px arial, san serif;
@@ -190,9 +190,24 @@
                         </li>
                         @role('superadmin|admin')
                         <li class="dropdown">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.applicant.index') }}" class="nav-link">
                                 <i class="fas fa-folder-open"></i>
                                 <span>List of Applicants</span>
+                            </a>
+                        </li>
+                        @endrole
+                        <li class="menu-header">Report</li>
+                        @role('superadmin|admin')
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-box-archive"></i>
+                                <span>Archive</span>
                             </a>
                         </li>
                         @endrole

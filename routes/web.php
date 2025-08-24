@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
@@ -25,11 +26,12 @@ Route::redirect('/', '/login');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login.index');
     Route::post('/login/authentication', [AuthController::class, 'authenticate'])->name('authenticate');
-    Route::get('/application-form/{uuid}', [FormController::class, 'index'])->name('form.index');
-    Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
-    Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
-    Route::post('/application-form/{uuid}', [FormController::class, 'AppFormStore'])->name('form.store');
 });
+
+Route::get('/application-form/{uuid}', [FormController::class, 'index'])->name('form.index');
+Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
+Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
+Route::post('/application-form/{uuid}', [FormController::class, 'AppFormStore'])->name('form.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
@@ -55,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
         Route::resource('subJob', SubJobController::class)->middleware('merge_cms:sub_jobs,subJob');
         Route::resource('need', NeedController::class)->middleware('merge_cms:needs,need');
+        Route::resource('applicant', ApplicantController::class);
     });
 
     Route::middleware('role:admin')
