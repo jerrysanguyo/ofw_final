@@ -23,4 +23,9 @@ class Relation extends Model
     {
         return $this->hasMany(UserFamily::class, 'relation_id');
     }
+
+    public function archiveFamily()
+    {
+        return $this->hasMany(ArchiveFamily::class, 'relation_id');
+    }
 }

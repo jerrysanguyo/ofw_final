@@ -90,4 +90,9 @@ class UserPersonal extends Model
     {
         return $this->hasMany(UserNeed::class, 'user_id');
     }
+
+    public function archivefamilies()
+    {
+        return $this->hasMany(ArchiveFamily::class, 'user_id');
+    }
 }
