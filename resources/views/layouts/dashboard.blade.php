@@ -199,7 +199,7 @@
                         <li class="menu-header">Report</li>
                         @role('superadmin|admin')
                         <li class="dropdown">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.report.index') }}" class="nav-link">
                                 <i class="fas fa-file-pdf"></i>
                                 <span>Reports</span>
                             </a>

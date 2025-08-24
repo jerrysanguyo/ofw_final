@@ -12,10 +12,7 @@
         </div>
 
         <div class="section-body">
-
-            {{-- KPIs --}}
             <div class="row">
-                <!-- Total OFW -->
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1 kpi-card">
                         <div class="card-icon bg-primary kpi-icon">
@@ -35,8 +32,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Landbased -->
+                
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1 kpi-card">
                         <div class="card-icon bg-danger kpi-icon">
@@ -56,8 +52,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Seabased -->
+                
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1 kpi-card">
                         <div class="card-icon bg-warning kpi-icon">
@@ -77,8 +72,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Submitted Today -->
+                
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1 kpi-card">
                         <div class="card-icon bg-success kpi-icon">

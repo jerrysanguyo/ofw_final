@@ -19,6 +19,7 @@ use App\Http\Controllers\Cms\TypeIdController;
 use App\Http\Controllers\Cms\TypeResidenceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -39,9 +40,17 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('sa')
         ->name('superadmin.')
         ->group(function () {
+        // report routes
+        Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('/age/count', [ReportController::class, 'ageCount'])->name('age.count'); 
+        Route::get('/age/export', [ReportController::class, 'ageExport'])->name('age.export'); 
+        Route::get('/country/count', [ReportController::class, 'countryCount'])->name('country.count');
+        Route::get('/country/export', [ReportController::class, 'countryExport'])->name('country.export');
+        // dashboard routes
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::post('/dashboard/applicant-count', [DashboardController::class, 'applicantCount'])->name('dashboard.applicant.count');
         Route::post('/dashboard/continent-breakdown', [DashboardController::class, 'continentBreakdown'])->name('dashboard.continent.breakdown');
+        // cms routes
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civil_statuses,civil');
