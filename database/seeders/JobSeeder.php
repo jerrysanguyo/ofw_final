@@ -22,7 +22,7 @@ class JobSeeder extends Seeder
             'Construction',
             'Manufacturing',
             'Finance',
-            'Business Administrtion',
+            'Business Administration',
             'Technology',
             'Sea Based'
         ];

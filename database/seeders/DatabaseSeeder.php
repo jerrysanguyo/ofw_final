@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             ResidenceSeeder::class,
             NeedSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

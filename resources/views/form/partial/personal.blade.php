@@ -5,19 +5,19 @@
         <div class="form-group col-md-4">
             <label for="first_name">First Name</label>
             <input type="text" id="first_name" name="first_name" class="form-control"
-                value="{{ old('first_name', $userDetails['first_name'] ?? '') }}">
+            value="{{ old('first_name', $userDetails['first_name'] ?? ($userInfo->first_name ?? '')) }}">
         </div>
 
         <div class="form-group col-md-4">
             <label for="middle_name">Middle Name</label>
             <input type="text" id="middle_name" name="middle_name" class="form-control"
-                value="{{ old('middle_name', $userDetails['middle_name'] ?? '') }}">
+                value="{{ old('middle_name', $userDetails['middle_name'] ?? ($userInfo->middle_name ?? '')) }}">
         </div>
 
         <div class="form-group col-md-4">
             <label for="last_name">Last Name</label>
             <input type="text" id="last_name" name="last_name" class="form-control"
-                value="{{ old('last_name', $userDetails['last_name'] ?? '') }}">
+                value="{{ old('last_name', $userDetails['last_name'] ?? ($userInfo->last_name ?? '')) }}">
         </div>
 
     </div>

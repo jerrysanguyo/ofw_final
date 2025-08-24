@@ -58,7 +58,7 @@ class UserPersonal extends Model
 
     public function typeId()
     {
-        return $this->belongsTo(TypeId::class, 'type_id_id');
+        return $this->belongsTo(TypeId::class, 'type_id');
     }
 
     public function educationalAttainment()
