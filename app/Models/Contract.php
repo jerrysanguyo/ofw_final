@@ -21,6 +21,11 @@ class Contract extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'contract_id');
+        return $this->hasMany(UserAbroad::class, 'contract_id');
+    }
+
+    public function archiveAbroad()
+    {
+        return $this->hasMany(ArchiveAbroad::class, 'contract_id');
     }
 }

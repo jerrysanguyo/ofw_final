@@ -26,6 +26,11 @@ class Job extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'job_id');
+        return $this->hasMany(UserAbroad::class, 'job_id');
+    }
+
+    public function archiveAbroad()
+    {
+        return $this->hasMany(ArchiveAbroad::class, 'job_id');
     }
 }

@@ -74,4 +74,9 @@ class ArchivePersonal extends Model
     {
         return $this->belongsTo(CivilStatus::class, 'civil_status_id');
     }
+
+    public function archiveAbroads()
+    {
+        return $this->hasOne(ArchiveAbroad::class, 'user_id');
+    }
 }

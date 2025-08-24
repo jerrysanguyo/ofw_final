@@ -21,6 +21,11 @@ class Owwa extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'owwa_id');
+        return $this->hasMany(UserAbroad::class, 'owwa_id');
+    }
+
+    public function archiveAbroad()
+    {
+        return $this->hasMany(ArchiveAbroad::class, 'owwa_id');
     }
 }

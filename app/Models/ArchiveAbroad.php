@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserAbroad extends Model
+class ArchiveAbroad extends Model
 {
     use HasFactory;
-    protected $table = 'user_abroads';
+    protected $table = 'archive_abroads';
     protected $fillable = [
         'user_id',
         'job_type',
@@ -29,9 +29,9 @@ class UserAbroad extends Model
         return self::where('user_id', $userId)->first();
     }
 
-    public function user()
+    public function archiveUser()
     {
-       return $this->belongsTo(UserPersonal::class, 'user_id'); 
+       return $this->belongsTo(ArchivePersonal::class, 'user_id'); 
     }
 
     public function job()

@@ -27,6 +27,11 @@ class SubJob extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'sub_job_id');
+        return $this->hasMany(UserAbroad::class, 'sub_job_id');
+    }
+
+    public function archiveAbroad()
+    {
+        return $this->hasMany(ArchiveAbroad::class, 'sub_job_id');
     }
 }

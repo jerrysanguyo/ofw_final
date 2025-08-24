@@ -27,6 +27,11 @@ class Country extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'country_id');
+        return $this->hasMany(UserAbroad::class, 'country_id');
+    }
+
+    public function arhiveAbroad()
+    {
+        return $this->hasMany(ArhiveAbroad::class, 'country_id');
     }
 }

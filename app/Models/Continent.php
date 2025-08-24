@@ -26,6 +26,11 @@ class Continent extends Model
 
     public function userAbroad()
     {
-        return $this->hasMany(userAbroad::class, 'continent_id');
+        return $this->hasMany(UserAbroad::class, 'continent_id');
+    }
+
+    public function archiveAbroad()
+    {
+        return $this->hasMany(ArchiveAbroad::class, 'continent_id');
     }
 }
