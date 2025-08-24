@@ -21,6 +21,11 @@ class Need extends Model
 
     public function userNeed()
     {
-        return $this->hasMany(userNeed::class, 'need_id');
+        return $this->hasMany(UserNeed::class, 'need_id');
+    }
+
+    public function archiveNeed()
+    {
+        return $this->hasMany(ArchiveNeed::class, 'need_id');
     }
 }
