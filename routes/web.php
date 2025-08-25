@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
@@ -41,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('sa')
         ->name('superadmin.')
         ->group(function () {
+        // archive route
+        Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index'); 
+        Route::post('/archives/import', [ArchiveController::class, 'import'])->name('archives.import');
         // activity log route
         Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity.log');
         // report routes
@@ -76,9 +80,21 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('ad')
         ->name('admin.')
         ->group(function () {
+        // archive route
+        Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index'); 
+        // activity log route
+        Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity.log');
+        // report routes
+        Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('/age/count', [ReportController::class, 'ageCount'])->name('age.count'); 
+        Route::get('/age/export', [ReportController::class, 'ageExport'])->name('age.export'); 
+        Route::get('/country/count', [ReportController::class, 'countryCount'])->name('country.count');
+        Route::get('/country/export', [ReportController::class, 'countryExport'])->name('country.export');
+        // dashboard routes
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::post('/dashboard/applicant-count', [DashboardController::class, 'applicantCount'])->name('dashboard.applicant.count');
         Route::post('/dashboard/continent-breakdown', [DashboardController::class, 'continentBreakdown'])->name('dashboard.continent.breakdown');
+        // cms routes
         Route::resource('gender', GenderController::class)->middleware('merge_cms:genders,gender');
         Route::resource('religion', ReligionController::class)->middleware('merge_cms:religions,religion');
         Route::resource('civil', CivilStatusController::class)->middleware('merge_cms:civils,civil');

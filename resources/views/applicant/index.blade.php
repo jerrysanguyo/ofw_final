@@ -28,7 +28,8 @@
                         <i class="fas fa-info-circle text-danger"></i> Please Note
                     </div>
                     <p class="mb-0">
-                        For any field that does not apply, simply input <strong>N/A</strong>.
+                        This table lists all recent activity from Spatie Activity Log. Click the <strong>expand</strong>
+                        button to view full properties/changes.
                     </p>
                 </div>
             </div>
@@ -41,6 +42,12 @@
                 <h3 class="font-weight-bold mb-0">
                     List of {{ $page_title }}
                 </h3>
+                @if (Route::is('superadmin.archive.index'))
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#add{{ $resource }}Modal">
+                    <i class="fa fa-plus"></i> Add {{ $page_title }}
+                </button>
+                @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -67,7 +74,7 @@
                                     {{ $record->barangay->name }} {{ $record->city }} </td>
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
-                                        <a href="{{ route('form.index', $record->uuid) }}"
+                                        <a href="{{ route('form.index', $record->uuid ?? $record->id) }}"
                                             class="btn btn-sm btn-primary">
                                             <i class="fas fa-expand"></i>
                                         </a>
@@ -82,6 +89,11 @@
         </div>
     </div>
 </section>
+@push('modals')
+@push('modals')
+  @include('applicant.partial.import')
+@endpush
+@endpush
 @push('scripts')
 <script>
 $(document).ready(function() {

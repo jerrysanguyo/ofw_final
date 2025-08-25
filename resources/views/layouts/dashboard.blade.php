@@ -202,14 +202,14 @@
                                 <span>Reports</span>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link">
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.archive.index') ? 'active' : '' }}">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.archive.index') }}" class="nav-link">
                                 <i class="fas fa-box-archive"></i>
                                 <span>Archive</span>
                             </a>
                         </li>
                         <li class="menu-header">Activity logs</li>
-                        <li class="dropdown">
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.activity.log') ? 'active' : '' }}">
                             <a href="{{ route(Auth::user()->getRoleNames()->first() . '.activity.log') }}" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span>User logs</span>
