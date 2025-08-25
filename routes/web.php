@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BarangayController;
@@ -40,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('sa')
         ->name('superadmin.')
         ->group(function () {
+        // activity log route
+        Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity.log');
         // report routes
         Route::get('/report', [ReportController::class, 'index'])->name('report.index');
         Route::get('/age/count', [ReportController::class, 'ageCount'])->name('age.count'); 

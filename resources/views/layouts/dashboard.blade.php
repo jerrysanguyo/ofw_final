@@ -182,23 +182,21 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link">
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.dashboard') ? 'active' : '' }}">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first().'.dashboard') }}" class="nav-link">
                                 <i class="fas fa-home"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         @role('superadmin|admin')
-                        <li class="dropdown">
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.applicant.index') ? 'active' : '' }}">
                             <a href="{{ route(Auth::user()->getRoleNames()->first() . '.applicant.index') }}" class="nav-link">
                                 <i class="fas fa-folder-open"></i>
                                 <span>List of Applicants</span>
                             </a>
-                        </li>
-                        @endrole
+                        </li> 
                         <li class="menu-header">Report</li>
-                        @role('superadmin|admin')
-                        <li class="dropdown">
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.report.index') ? 'active' : '' }}">
                             <a href="{{ route(Auth::user()->getRoleNames()->first() . '.report.index') }}" class="nav-link">
                                 <i class="fas fa-file-pdf"></i>
                                 <span>Reports</span>
@@ -210,9 +208,16 @@
                                 <span>Archive</span>
                             </a>
                         </li>
+                        <li class="menu-header">Activity logs</li>
+                        <li class="dropdown">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.activity.log') }}" class="nav-link">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>User logs</span>
+                            </a>
+                        </li>
                         @endrole
 
-                        @role('superadmin|admin')
+                        @role('superadmin')
                         <li class="menu-header">CMS</li>@php
                         $role = Auth::user()->getRoleNames()->first();
                         $children = [
