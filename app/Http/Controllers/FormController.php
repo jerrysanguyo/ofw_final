@@ -32,22 +32,58 @@ class FormController extends Controller
         $this->formService = $formService;
     }
 
+    // private function userApi(?string $uuid): array
+    // {
+    //     if (empty($uuid)) return [];
+
+    //     $SECRET_TOKEN = "super-secret-token-123";
+    //     $ENDPOINT = "http://127.0.0.2:8000/api/users/{$uuid}";
+
+    //     try {
+    //         $resp = Http::withHeaders(['X-Api-Token' => $SECRET_TOKEN])
+    //             ->timeout(10)->get($ENDPOINT);
+    //     } catch (ConnectionException $e) {
+    //         return [];
+    //     }
+
+    //     if ($resp->failed()) return [];
+    //     if (($resp->json('echo_token') ?? null) !== $SECRET_TOKEN) return [];
+
+    //     return $resp->json('data') ?? [];
+    // }
+
     private function userApi(?string $uuid): array
     {
-        if (empty($uuid)) return [];
+        if (empty($uuid)) {
+            return [];
+        }
 
-        $SECRET_TOKEN = "super-secret-token-123";
-        $ENDPOINT = "http://127.0.0.2:8000/api/users/{$uuid}";
+        $token   = (string) config('services.partner_api.token');
+        $baseUri = rtrim((string) config('services.partner_api.base_uri'), '/');
+        $header  = (string) config('services.partner_api.header', 'X-Api-Token');
+        $timeout = (int) config('services.partner_api.timeout', 10);
+        
+        if ($token === '' || $baseUri === '') {
+            return [];
+        }
+
+        $endpoint = "{$baseUri}/api/users/{$uuid}";
 
         try {
-            $resp = Http::withHeaders(['X-Api-Token' => $SECRET_TOKEN])
-                ->timeout(10)->get($ENDPOINT);
+            $resp = Http::withHeaders([$header => $token])
+                ->timeout($timeout)
+                ->get($endpoint);
         } catch (ConnectionException $e) {
             return [];
         }
 
-        if ($resp->failed()) return [];
-        if (($resp->json('echo_token') ?? null) !== $SECRET_TOKEN) return [];
+        if ($resp->failed()) {
+            return [];
+        }
+        
+        if (($resp->json('echo_token') ?? null) !== $token) {
+            return [];
+        }
 
         return $resp->json('data') ?? [];
     }

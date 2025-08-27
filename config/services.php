@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'partner_api' => [
+        'token'    => env('PARTNER_API_TOKEN'),
+        'base_uri' => env('PARTNER_API_BASE_URI', 'http://127.0.0.1:8000'),
+        'timeout'  => env('PARTNER_API_TIMEOUT', 10),
+        'header'   => env('PARTNER_API_HEADER', 'X-Api-Token'),
+    ],
+
 ];
