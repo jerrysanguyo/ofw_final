@@ -68,6 +68,16 @@
                 value="{{ old('years_abroad', $previousJob->abroad_years ?? '') }}">
         </div>
         <div class="form-group col-md-2">
+            <label for="last_departure">Date of last departure</label>
+            <input type="date" id="last_departure" name="last_departure" class="form-control"
+                value="{{ old('last_departure', $previousJob->date_departure ?? '') }}">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="last_arrival">Date of last arrival</label>
+            <input type="date" id="last_arrival" name="last_arrival" class="form-control"
+                value="{{ old('last_arrival', $previousJob->date_arrival ?? '') }}">
+        </div>
+        <div class="form-group col-md-2">
             <label for="contract">Status of last Contract</label>
             <select id="contract" name="contract" class="form-control">
                 <option value="" disabled selected hidden>Choose...</option>
@@ -78,16 +88,6 @@
                 </option>
                 @endforeach
             </select>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="last_departure">Date of last departure</label>
-            <input type="date" id="last_departure" name="last_departure" class="form-control"
-                value="{{ old('last_departure', $previousJob->date_departure ?? '') }}">
-        </div>
-        <div class="form-group col-md-2">
-            <label for="last_arrival">Date of last arrival</label>
-            <input type="date" id="last_arrival" name="last_arrival" class="form-control"
-                value="{{ old('last_arrival', $previousJob->date_arrival ?? '') }}">
         </div>
         <div class="form-group col-md-2">
             <label for="owwa">OWWA membership</label>

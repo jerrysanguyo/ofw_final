@@ -74,3 +74,49 @@ document.addEventListener('DOMContentLoaded', function () {
         populateSubJobs(this.value, null);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const contractSel   = document.getElementById('contract');
+    const lastDeparture = document.getElementById('last_departure');
+    
+    function findOptionByText(selectEl, text) {
+        const t = String(text).trim().toLowerCase();
+        return Array.from(selectEl.options).find(
+            o => o.textContent.trim().toLowerCase() === t
+        );
+    }
+    
+    function atLeastTwoYearsAgo(date) {
+        const d = new Date(date);
+        const threshold = new Date(d);
+        threshold.setFullYear(threshold.getFullYear() + 2);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        threshold.setHours(0,0,0,0);
+        return threshold <= today;
+    }
+
+    function checkContractStatus() {
+        const val = lastDeparture.value;
+        if (!val) return;
+        
+        const departureDate = new Date(val + 'T00:00:00');
+
+        const finishedOpt  = findOptionByText(contractSel, 'Finished');
+        const unfinishOpt  = findOptionByText(contractSel, 'Unfinish');
+
+        if (atLeastTwoYearsAgo(departureDate)) {
+            if (finishedOpt) contractSel.value = finishedOpt.value;
+        } else {
+            if (unfinishOpt) {
+                contractSel.value = unfinishOpt.value;
+            } else {
+                contractSel.selectedIndex = 0;
+            }
+        }
+    }
+    
+    checkContractStatus();
+    
+    lastDeparture.addEventListener('change', checkContractStatus);
+});

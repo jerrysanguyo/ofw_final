@@ -88,11 +88,11 @@ class FormController extends Controller
         return $resp->json('data') ?? [];
     }
 
-    public function index(string $uuid)
+    public function index()
     {
-        if (empty($uuid)) {
-            abort(404, 'UUID is required');
-        }
+        // if (empty($uuid)) {
+        //     abort(404, 'UUID is required');
+        // }
         $barangays = Barangay::getAllBarangays();
         $residence_types = TypeResidence::getAllTypeResidences();
         $genders = Gender::getAllGenders();
@@ -106,9 +106,9 @@ class FormController extends Controller
         $relations = Relation::getAllRelations();
         $needs = Need::getAllNeeds();
         $continents = Continent::getAllContinents();
-        $userDetails = $this->userApi($uuid);
+        // $userDetails = $this->userApi($uuid);
 
-        $userInfo     = UserPersonal::where('uuid', $uuid)->first();
+        $userInfo     = UserPersonal::where('uuid', $uuid ?? '')->first();
         $previousJob  = $userInfo?->abroad;
         $households   = $userInfo?->families ?? collect();
         $userNeeds    = $userInfo?->needs()->pluck('need_id')->toArray() ?? [];
@@ -126,7 +126,7 @@ class FormController extends Controller
             'relations',
             'needs',
             'continents',
-            'userDetails',
+            // 'userDetails',
             'userInfo',
             'previousJob',
             'households',

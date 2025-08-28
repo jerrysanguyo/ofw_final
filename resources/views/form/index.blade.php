@@ -41,7 +41,7 @@
         <div class="section-body">
             <div class="card shadow-lg card-primary">
                 <div class="card-body">
-                    <form action="{{ route('form.store', $userDetails['uuid'] ?? $userInfo->uuid) }}" method="post">
+                    <form action="{{ route('form.store', $userDetails['uuid'] ?? $userInfo->uuid ?? '') }}" method="post">
                         @csrf
                         @include('form.partial.personal')
                         @include('form.partial.abroad')

@@ -32,7 +32,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/login/authentication', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
-Route::get('/application-form/{uuid}', [FormController::class, 'index'])->name('form.index');
+// Route::get('/application-form/{uuid}', [FormController::class, 'index'])->name('form.index');
+Route::get('/application-form', [FormController::class, 'index'])->name('form.index');
 Route::get('/get-sub-jobs/{job}', [FormController::class, 'getByJob']);
 Route::get('/get-countries/{continentId}', [FormController::class, 'getByContinent']);
 Route::post('/application-form/{uuid}', [FormController::class, 'AppFormStore'])->name('form.store');
