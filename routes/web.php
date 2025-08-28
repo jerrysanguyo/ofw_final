@@ -22,6 +22,7 @@ use App\Http\Controllers\Cms\TypeResidenceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -42,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('sa')
         ->name('superadmin.')
         ->group(function () {
+        // user routes
+        Route::resource('user', UserController::class);
         // archive route
         Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index'); 
         Route::post('/archives/import', [ArchiveController::class, 'import'])->name('archives.import');

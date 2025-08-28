@@ -23,7 +23,7 @@ class AdminSeeder extends Seeder
                 'last_name' => 'Admin',
                 'contact_number' => '09271852711',
                 'email_verified_at' => now(),
-                'password' => Hash::make('password'),
+                'password' => Hash::make('JSngSAdmin1998!'),
                 'remember_token' => Str::random(10),
             ]
         );

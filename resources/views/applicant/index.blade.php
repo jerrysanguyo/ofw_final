@@ -42,7 +42,8 @@
                 <h3 class="font-weight-bold mb-0">
                     List of {{ $page_title }}
                 </h3>
-                @if (Route::is('superadmin.archive.index'))
+                @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') ||
+                Route::is(Auth::user()->getRoleNames()->first() . '.user.index'))
                 <button type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#add{{ $resource }}Modal">
                     <i class="fa fa-plus"></i> Add {{ $page_title }}
@@ -70,14 +71,37 @@
                                 </td>
                                 <td class="border border-black">{{ $record->email ?? 'N/A' }}</td>
                                 <td class="border border-black">{{ $record->contact_number ?? 'N/A' }}</td>
-                                <td class="border border-black">{{ $record->house_number }} {{ $record->street }}
-                                    {{ $record->barangay->name }} {{ $record->city }} </td>
+                                <td class="border border-black">
+                                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index'))
+                                    {{ $record->house_number }} {{ $record->street }}
+                                    {{ $record->barangay->name }} {{ $record->city }}
+                                    @else
+                                    {{ $record->getRoleNames()->first() }}
+                                    @endif
+                                </td>
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('form.index', $record->uuid ?? $record->id) }}"
-                                            class="btn btn-sm btn-primary">
+                                            class="btn btn-sm btn-success">
                                             <i class="fas fa-expand"></i>
                                         </a>
+                                        @if (route::is(Auth::user()->getRoleNames()->first() . '.user.index'))
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                            data-target="#editModal-{{ $record->id }}" title="Edit {{ $page_title }}">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        @push('modals')
+                                        @include('applicant.partial.userUpdate')
+                                        @endpush
+                                        @endif
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#deleteModal-{{ $record->id }}"
+                                            title="Delete {{ $page_title }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        @push('modals')
+                                        @include('applicant.partial.userDelete')
+                                        @endpush
                                     </div>
                                 </td>
                             </tr>
@@ -90,9 +114,11 @@
     </div>
 </section>
 @push('modals')
-@push('modals')
-  @include('applicant.partial.import')
-@endpush
+@if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index'))
+@include('applicant.partial.import')
+@else
+@include('applicant.partial.userCreate')
+@endif
 @endpush
 @push('scripts')
 <script>
