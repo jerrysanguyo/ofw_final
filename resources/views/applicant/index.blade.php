@@ -72,13 +72,39 @@
                                 <td class="border border-black">{{ $record->email ?? 'N/A' }}</td>
                                 <td class="border border-black">{{ $record->contact_number ?? 'N/A' }}</td>
                                 <td class="border border-black">
-                                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') || Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
+                                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') ||
+                                    Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
                                     {{ $record->house_number }} {{ $record->street }}
                                     {{ $record->barangay->name }} {{ $record->city }}
                                     @else
                                     {{ $record->getRoleNames()->first() }}
                                     @endif
                                 </td>
+                                @if (Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
+                                @php
+                                $currentStatus = strtolower(optional($record->applicationStatus)->name ?? 'pending');
+                                $isApproved = $currentStatus === 'approved';
+                                $fullName = trim(($record->first_name ?? '').' '.($record->last_name ?? '')) ?: 'this
+                                user';
+                                @endphp
+
+                                <td class="border border-black">
+                                    <label class="custom-switch m-0">
+                                        <input type="checkbox" class="custom-switch-input js-status-switch"
+                                            id="status-switch-{{ $record->id }}" data-id="{{ $record->id }}"
+                                            data-name="{{ $fullName }}" data-current="{{ $currentStatus }}"
+                                            data-url="{{ route('superadmin.user-personals.set-status', ['userPersonal' => $record->id]) }}"
+                                            @checked($isApproved)>
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description" id="status-text-{{ $record->id }}">
+                                            {{ $currentStatus }}
+                                        </span>
+                                    </label>
+                                </td>
+                                @push('modals')
+                                @include('applicant.partial.userStatus')
+                                @endpush
+                                @endif
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('form.index', $record->uuid ?? $record->id) }}"
@@ -114,7 +140,8 @@
     </div>
 </section>
 @push('modals')
-@if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') || Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
+@if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') ||
+Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
 @include('applicant.partial.import')
 @else
 @include('applicant.partial.userCreate')
@@ -149,5 +176,6 @@ $(document).ready(function() {
     });
 });
 </script>
+<script src="{{ asset('assets/js/dashboard/applicant/status.js') }}"></script>
 @endpush
 @endsection

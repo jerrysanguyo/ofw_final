@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('sa')
         ->name('superadmin.')
         ->group(function () {
+        // applicant route
+        Route::patch('/user-personals/{userPersonal}/status', [ApplicantController::class, 'set'])
+            ->name('user-personals.set-status');
         // user routes
         Route::resource('user', UserController::class);
         // archive route
