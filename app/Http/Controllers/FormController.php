@@ -88,7 +88,7 @@ class FormController extends Controller
         return $resp->json('data') ?? [];
     }
 
-    public function index()
+    public function index($uuid)
     {
         // if (empty($uuid)) {
         //     abort(404, 'UUID is required');

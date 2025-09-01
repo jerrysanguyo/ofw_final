@@ -107,7 +107,7 @@
                                 @endif
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
-                                        <a href="{{ route('form.index', $record->uuid ?? $record->id) }}"
+                                        <a href="{{ route('form.index', $record->uuid ?? '') }}"
                                             class="btn btn-sm btn-success">
                                             <i class="fas fa-expand"></i>
                                         </a>
