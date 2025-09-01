@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AgeFamily\AgeFamilyWorkbook;
 use App\Exports\CountryAbroadExport;
 use App\Models\Country;
 use App\Models\UserAbroad;
@@ -46,7 +47,7 @@ class ReportController extends Controller
         ]);
 
         return Excel::download(
-            new AgeFamilyExport($data['ageBracket']),
+            new AgeFamilyWorkbook($data['ageBracket']),
             'age_report_'.$data['ageBracket'].'_'.now()->format('Ymd_His').'.xlsx'
         );
     }

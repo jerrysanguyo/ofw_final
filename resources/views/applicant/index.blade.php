@@ -72,7 +72,7 @@
                                 <td class="border border-black">{{ $record->email ?? 'N/A' }}</td>
                                 <td class="border border-black">{{ $record->contact_number ?? 'N/A' }}</td>
                                 <td class="border border-black">
-                                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index'))
+                                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') || Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
                                     {{ $record->house_number }} {{ $record->street }}
                                     {{ $record->barangay->name }} {{ $record->city }}
                                     @else
@@ -114,7 +114,7 @@
     </div>
 </section>
 @push('modals')
-@if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index'))
+@if (Route::is(Auth::user()->getRoleNames()->first() . '.archive.index') || Route::is(Auth::user()->getRoleNames()->first() . '.applicant.index'))
 @include('applicant.partial.import')
 @else
 @include('applicant.partial.userCreate')
