@@ -21,7 +21,7 @@ class TypeResidence extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'residence_type_id');
+        return $this->hasMany(UserPersonal::class, 'residence_type_id');
     }
 
     public function archivePersonals()

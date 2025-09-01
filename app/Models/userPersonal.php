@@ -29,6 +29,7 @@ class UserPersonal extends Model
         'religion_id',
         'civil_status_id',
         'present_job',
+        'status_id'
     ];
 
     public static function getAllUserPersonals()
@@ -99,5 +100,10 @@ class UserPersonal extends Model
     public function archiveNeeds()
     {
         return $this->hasMany(ArchiveNeed::class, 'user_id');
+    }
+
+    public function applicationStatus()
+    {
+        return $this->belongsTo(ApplicationStatus::class, 'status_id');
     }
 }

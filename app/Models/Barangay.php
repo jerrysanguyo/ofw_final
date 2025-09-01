@@ -21,7 +21,7 @@ class Barangay extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'barangay_id');
+        return $this->hasMany(UserPersonal::class, 'barangay_id');
     }
 
     public function archivePersonals()

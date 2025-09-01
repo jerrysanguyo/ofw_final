@@ -61,6 +61,7 @@ class UserSeeder extends Seeder
                 'religion_id'               => $religion->id,
                 'civil_status_id'           => $civil->id,
                 'present_job'               => "Worker {$i}",
+                'status_id'                 => 1,
             ]);
             
             $subJob = SubJob::inRandomOrder()->first();

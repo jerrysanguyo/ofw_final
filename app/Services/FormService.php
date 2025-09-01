@@ -36,8 +36,18 @@ class FormService
                     'religion_id'                => $data['religion'],
                     'civil_status_id'            => $data['civil_status'],
                     'present_job'                => $data['present_job'] ?? null,
+                    'status_id'                  => 1,
                 ]
             );
+
+            $status = 'active';
+
+            if (!empty($data['last_departure'])) {
+                $departure = Carbon::parse($data['last_departure']);
+                $yearsDiff = $departure->diffInYears(Carbon::now());
+
+                $status = $yearsDiff >= 2 ? 'inactive' : 'active';
+            }
             
             UserAbroad::updateOrCreate(
                 ['user_id' => $personal->id],
@@ -53,6 +63,7 @@ class FormService
                     'date_arrival'   => $data['last_arrival'] ?? null,
                     'owwa_id'        => $data['owwa'] ?? null,
                     'intent_return'  => $data['intent_return'],
+                    'status'         => $status,
                 ]
             );
 

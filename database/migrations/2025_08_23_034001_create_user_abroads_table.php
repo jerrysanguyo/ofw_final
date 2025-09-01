@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('user_personals')->cascadeOnDelete();
             $table->enum('job_type', ['landbased', 'seabased']);
-            $table->foreignId('job_id')->constrained('jobs')->cascadeOnDelete();
-            $table->foreignId('sub_job_id')->constrained('sub_jobs')->cascadeOnDelete();
-            $table->foreignId('continent_id')->constrained('continents')->cascadeOnDelete();
-            $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
-            $table->foreignId('contract_id')->constrained('contracts')->cascadeOnDelete();
+            $table->foreignId('job_id')->nullable()->constrained('jobs')->nullOnDelete();
+            $table->foreignId('sub_job_id')->nullable()->constrained('sub_jobs')->nullOnDelete();
+            $table->foreignId('continent_id')->nullable()->constrained('continents')->nullOnDelete();
+            $table->foreignId('country_id')->nullable()->constrained('countries')->nullOnDelete();
+            $table->foreignId('contract_id')->nullable()->constrained('contracts')->nullOnDelete();
             $table->integer('abroad_years');
             $table->date('date_departure')->nullable();
             $table->date('date_arrival')->nullable();
-            $table->foreignId('owwa_id')->constrained('owwas')->cascadeOnDelete();
+            $table->foreignId('owwa_id')->nullable()->constrained('owwas')->nullOnDelete();
             $table->enum('intent_return', ['yes', 'no']);
-            $table->enum('status', ['active','inactive']);
+            $table->enum('status', ['active','inactive'])->default('inactive');
             $table->timestamps();
         });
     }

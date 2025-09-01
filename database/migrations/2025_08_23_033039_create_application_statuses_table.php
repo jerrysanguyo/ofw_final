@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('archive_needs', function (Blueprint $table) {
+        Schema::create('application_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('archive_personals')->cascadeOnDelete();
-            $table->foreignId('need_id')->nullable()->constrained('needs')->nullOnDelete();
+            $table->string('name')->unique();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('archive_needs');
+        Schema::dropIfExists('application_statuses');
     }
 };

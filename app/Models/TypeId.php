@@ -21,7 +21,7 @@ class TypeId extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'type_id_id');
+        return $this->hasMany(UserPersonal::class, 'type_id_id');
     }
 
     public function archivePersonals()

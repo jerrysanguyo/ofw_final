@@ -21,7 +21,7 @@ class Gender extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'gender_id');
+        return $this->hasMany(UserPersonal::class, 'gender_id');
     }
 
     public function archivePersonals()

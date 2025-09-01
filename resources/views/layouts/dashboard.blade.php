@@ -230,7 +230,7 @@
                         'gender.index', 'religion.index', 'civil.index', 'educational.index', 'barangay.index',
                         'residence.index', 'typeId.index', 'relation.index', 'owwa.index', 'contract.index',
                         'continent.index',
-                        'country.index', 'job.index', 'subJob.index', 'need.index'
+                        'country.index', 'job.index', 'subJob.index', 'need.index', 'status.index'
                         ];
                         $open = collect($children)
                         ->map(fn($r) => "$role.$r")
@@ -243,6 +243,14 @@
                                 <span>Dropdown options</span>
                             </a>
                             <ul class="dropdown-menu">
+                                <li
+                                    class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.status.index') ? 'active' : '' }}">
+                                    <a class="nav-link"
+                                        href="{{ route(Auth::user()->getRoleNames()->first() . '.status.index') }}">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        Application Status
+                                    </a>
+                                </li>
                                 <li
                                     class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first().'.gender.index') ? 'active' : '' }}">
                                     <a class="nav-link"

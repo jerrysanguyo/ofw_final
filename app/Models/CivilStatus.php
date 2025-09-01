@@ -21,7 +21,7 @@ class CivilStatus extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'civil_status_id');
+        return $this->hasMany(UserPersonal::class, 'civil_status_id');
     }
 
     public function archivePersonals()

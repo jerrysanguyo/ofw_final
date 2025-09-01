@@ -21,7 +21,7 @@ class EducationalAttainment extends Model
 
     public function userPersonals()
     {
-        return $this->hasMany(userPersonal::class, 'educational_attainment_id');
+        return $this->hasMany(UserPersonal::class, 'educational_attainment_id');
     }
 
     public function archivePersonals()

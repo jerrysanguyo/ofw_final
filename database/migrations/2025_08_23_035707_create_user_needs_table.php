@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_needs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('user_personals')->cascadeOnDelete();
-            $table->foreignId('need_id')->constrained('needs')->cascadeOnDelete();
+            $table->foreignId('need_id')->nullable()->constrained('needs')->nullOnDelete();
             $table->timestamps();
         });
     }

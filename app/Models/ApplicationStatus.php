@@ -5,27 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Religion extends Model
+class ApplicationStatus extends Model
 {
     use HasFactory;
-    protected $table = 'religions';
+    use HasFactory;
+    protected $table = 'application_statuses';
     protected $fillable = [
         'name',
         'remarks',
     ];
 
-    public static function getAllReligions()
+    public static function getAllApplicationStatuses()
     {
         return self::all();
     }
-    
+
     public function userPersonals()
     {
-        return $this->hasMany(UserPersonal::class, 'religion_id');
-    }
-    
-    public function archivePersonals()
-    {
-        return $this->hasMany(ArchivePersonal::class, 'religion_id');
+        return $this->hasMany(UserPersonal::class, 'status_id');
     }
 }

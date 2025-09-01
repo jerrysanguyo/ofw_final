@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Cms\ApplicationStatusController;
 use App\Http\Controllers\Cms\BarangayController;
 use App\Http\Controllers\Cms\CivilStatusController;
 use App\Http\Controllers\Cms\ContinentController;
@@ -78,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('subJob', SubJobController::class)->middleware('merge_cms:sub_jobs,subJob');
         Route::resource('need', NeedController::class)->middleware('merge_cms:needs,need');
         Route::resource('applicant', ApplicantController::class);
+        Route::resource('status', ApplicationStatusController::class)->middleware('merge_cms:application_statuses,status');
     });
 
     Route::middleware('role:admin')
