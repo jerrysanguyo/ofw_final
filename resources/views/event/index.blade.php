@@ -60,24 +60,20 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $record)
-                            @php
-                            $fieldMap = [
-                            'subJob' => 'job.name',
-                            'country' => 'continent.name',
-                            'event' => 'barangay.name'
-                            ];
-                            $firstCol = isset($fieldMap[$resource]) ? data_get($record, $fieldMap[$resource]) :
-                            $record->remarks;
-                            $secondCol = in_array($resource, ['subJob','country','event']) ?
-                            $record->remarks : null;
-                            @endphp
                             <tr>
-                                <td class="border border-black">{{ $record->id }}</td>
                                 <td class="border border-black">{{ $record->name }}</td>
-                                <td class="border border-black">{{ $firstCol }}</td>
-                                @if($secondCol)
-                                <td class="border border-black">{{ $secondCol }}</td>
-                                @endif
+                                <td class="border border-black">{{ $record->date }} - {{ $record->time }}</td>
+                                <td class="border border-black">{{ $record->venue }} - {{ $record->barangay->name }}
+                                </td>
+                                <td class="border border-black">
+                                    <span
+                                        class="badge {{ $record->status === 'created' ? 'badge-warning' 
+                                        : ($record->status === 'ongoing' ? 'badge-info' 
+                                        : ($record->status === 'done' ? 'badge-success' 
+                                        : 'badge-secondary')) }}">
+                                        {{ ucfirst($record->status) }}
+                                    </span>
+                                </td>
                                 <td class="border border-black">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
@@ -85,7 +81,7 @@
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         @push('modals')
-                                        @include('cms.edit')
+                                        @include('event.edit')
                                         @endpush
                                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
                                             data-target="#deleteModal-{{ $record->id }}"
@@ -93,7 +89,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                         @push('modals')
-                                        @include('cms.delete')
+                                        @include('event.delete')
                                         @endpush
                                     </div>
                                 </td>
@@ -107,9 +103,7 @@
     </div>
 </section>
 @push('modals')
-@include('cms.create')
-@include('cms.edit')
-@include('cms.delete')
+@include('event.create')
 @endpush
 @push('scripts')
 <script>

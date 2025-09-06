@@ -19,15 +19,23 @@
                             placeholder="Enter {{ $page_title }} name" required>
                     </div>
 
+                    @if (Route::is(Auth::user()->getRoleNames()->first() . '.event.index'))
                     <div class="form-group">
-                        <label for="remarks">Remarks</label>
-                        <input type="text" id="remarks" name="remarks" class="form-control" placeholder="Enter remarks"
-                            required>
+                        <label for="date">Date of event</label>
+                        <input type="date" id="date" name="date" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="time">Time of event</label>
+                        <input type="text" id="time" name="time" class="form-control"
+                            placeholder="Enter time" required>
+                    </div>
+                    @endif
+
                     @php
                     $foreignKeyMap = [
                     'subJob' => 'job_id',
                     'country' => 'continent_id',
+                    'event' => 'barangay_id'
                     ];
                     $field = $foreignKeyMap[$resource] ?? null;
                     @endphp
@@ -46,6 +54,12 @@
                         </select>
                     </div>
                     @endif
+
+                    <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                        <input type="text" id="remarks" name="remarks" class="form-control" placeholder="Enter remarks"
+                            required>
+                    </div>
                 </div>
 
                 <div class="modal-footer">

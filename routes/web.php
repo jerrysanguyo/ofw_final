@@ -24,6 +24,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -82,8 +83,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('job', JobController::class)->middleware('merge_cms:jobs,job');
         Route::resource('subJob', SubJobController::class)->middleware('merge_cms:sub_jobs,subJob');
         Route::resource('need', NeedController::class)->middleware('merge_cms:needs,need');
-        Route::resource('applicant', ApplicantController::class);
         Route::resource('status', ApplicationStatusController::class)->middleware('merge_cms:application_statuses,status');
+        Route::resource('applicant', ApplicantController::class);
+        Route::resource('event', EventController::class);
     });
 
     Route::middleware('role:admin')

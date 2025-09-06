@@ -201,6 +201,12 @@
                                 <span>List of Users</span>
                             </a>
                         </li> 
+                        <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.event.index') ? 'active' : '' }}">
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.event.index') }}" class="nav-link">
+                                <i class="fas fa-calendar-days"></i>
+                                <span>Events</span>
+                            </a>
+                        </li> 
                         <li class="menu-header">Report</li>
                         <li class="dropdown {{ request()->routeIs(Auth::user()->getRoleNames()->first() . '.report.index') ? 'active' : '' }}">
                             <a href="{{ route(Auth::user()->getRoleNames()->first() . '.report.index') }}" class="nav-link">

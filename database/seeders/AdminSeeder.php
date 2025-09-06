@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
             ]
         );
         
-        if (! $admin->hasRole($superAdminRole->name)) {
+        if (!$admin->hasRole($superAdminRole->name)) {
             $admin->assignRole($superAdminRole);
         }
     }

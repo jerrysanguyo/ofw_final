@@ -29,4 +29,8 @@ class Barangay extends Model
         return $this->hasMany(ArchivePersonal::class, 'barangay_id');
     }
 
+    public function event()
+    {
+        return $this->hasMany(Event::class, 'barangay_id');
+    }
 }
