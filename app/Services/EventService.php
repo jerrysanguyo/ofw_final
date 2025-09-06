@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\EventJob;
 use App\Models\Event;
 
 class EventService
@@ -17,6 +18,11 @@ class EventService
                 'time'          => $data['time'],
                 'date'          => $data['date'], 
         ]);
+
+        if($event)
+        {
+            EventJob::dispatch($event->id);
+        }
 
         return $event ?: null;
     }
